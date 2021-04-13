@@ -6,15 +6,36 @@ snake[0] = {
     x: 8*box,
     y: 8*box
 }
-let direction = "right";
+let direction = "none";
 let food = {
     x: Math.floor(Math.random() * 15 + 1) * box,
     y: Math.floor(Math.random() * 15 + 1) * box
 }
+let pontos = 0;
+let jogar = false, recomecar = false;
 
 function criarBG(){
     context.fillStyle = "lightgreen";
-    context.fillRect(0, 0, 16*box, 16*box)
+    context.fillRect(0, 0, 16*box, 16*box);
+}
+
+function criarFundo(){
+    context.fillStyle = "lightgreen";
+    context.fillRect(0, 0, 16*box, 16*box);
+}
+
+function criarTexto(){
+    context.fillStyle = "black";
+    context.font = "25px Arial";
+    context.textAlign = "center";
+    if(recomecar){
+        context.fillText("GAME OVER!", 256, 210);
+        context.fillText("CLIQUE AQUI PARA JOGAR DE NOVO!", 256, 280);
+        document.addEventListener("click", reload);
+    }
+    else{
+        context.fillText("CLIQUE AQUI PARA JOGAR!", 256, canvas.width/2);
+    }
 }
 
 function criarCobrinha(){
@@ -27,6 +48,10 @@ function criarCobrinha(){
 function criarFruta(){
     context.fillStyle = "red";
     context.fillRect(food.x, food.y, box, box);
+}
+
+function criarPontuacao(){
+    document.getElementById("pontos").innerHTML = pontos;
 }
 
 document.addEventListener('keydown', update);
@@ -46,6 +71,10 @@ function update(event){
     }
 }
 
+function reload(){
+    location.reload();
+}
+
 function iniciarJogo(){   
     if(snake[0].x > 15*box && direction == "right"){
         snake[0].x = 0;
@@ -63,13 +92,22 @@ function iniciarJogo(){
     for(let i = 1; i<snake.length; i++){
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(jogo);
-            alert("Game Over!");
+            jogar=false;
+            recomecar=true;
+            criarTexto();
         }
     }
 
-    criarBG();
-    criarCobrinha();
-    criarFruta();
+    if(jogar){
+        criarBG();
+        criarCobrinha();
+        criarFruta();
+        criarPontuacao();
+    }
+    else{
+        criarFundo();
+        criarTexto();
+    }
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
@@ -99,6 +137,7 @@ function iniciarJogo(){
     else{
         food.x = Math.floor(Math.random() * 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
+        pontos++;
     }   
 
     let newHead = {

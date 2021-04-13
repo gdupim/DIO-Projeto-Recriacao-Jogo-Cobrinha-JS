@@ -6,4 +6,35 @@ body{
     align-items: center;
     flex-direction: column;
     color: rgb(44, 102, 44);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: justify;
+    flex-direction: row;
+}
+
+canvas{
+    border-radius: 20px;
+    margin: 0% 5% 0% 25%;
+    border: 5px solid black;
+}
+
+h1{
+    font-size: 40px;
+    margin-right: 5%;
+}
+
+#pontuacao{
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    margin-left: 5%;
+}
+
+#pontos{
+    font-family: 'Roboto', 'Consolas';
+    font-size: 40px;
 }

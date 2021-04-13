@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">    
+        <title>Snake Game</title>
+    </head>
+    <body>
+        <h1>SNAKE GAME</h1>
+        <main>
+            <canvas id="snake" width="512" height="512" onclick="jogar=true"></canvas>
+            <section id="pontuacao">
+                <p>PONTUAÇÃO:</p>
+                <div id="pontos">#</div>
+            </section>
+        </main>
+    </body>
+
     <script defer src="script.js"></script>
-    <title>Snake Game</title>
-</head>
-<body>
-    <h1>SNAKE GAME</h1>
-    <canvas id="snake" width="512" height="512"></canvas>
-</body>
 </html>
