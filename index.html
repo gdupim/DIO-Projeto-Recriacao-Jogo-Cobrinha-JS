@@ -10,13 +10,21 @@
     <body>
         <h1>SNAKE GAME</h1>
         <main>
+            <section id="instrucoes">
+                <p>INSTRUÇÕES:</p>
+                <em class="fas fa-arrow-alt-circle-up"></em>
+                <em class="fas fa-arrow-alt-circle-left"></em>
+                <em class="fas fa-arrow-alt-circle-down"></em>
+                <em class="fas fa-arrow-alt-circle-right"></em>
+            </section>
             <canvas id="snake" width="512" height="512" onclick="jogar=true"></canvas>
             <section id="pontuacao">
                 <p>PONTUAÇÃO:</p>
-                <div id="pontos">#</div>
+                <div id="pontos">0</div>
             </section>
         </main>
     </body>
 
     <script defer src="script.js"></script>
+    <script src="https://kit.fontawesome.com/4c40f214e1.js" crossorigin="anonymous"></script>
 </html>

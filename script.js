@@ -13,6 +13,10 @@ let food = {
 }
 let pontos = 0;
 let jogar = false, recomecar = false;
+let indice = 0;
+let cores = ["green", "blue", "yellow", "orange", "brown", "maroon", "lime", "crimson", 
+             "black", "purple", "navy", "chartreuse", "forestgreen", "indigo", "lawngreen", 
+             "lightseagreen", "orangered", "salmon", "springgreen", "yellowgreen"]; 
 
 function criarBG(){
     context.fillStyle = "lightgreen";
@@ -40,7 +44,7 @@ function criarTexto(){
 
 function criarCobrinha(){
     for (let i = 0; i < snake.length; i++) {
-        context.fillStyle = "green";
+        context.fillStyle = cores[indice];
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
 }
@@ -76,19 +80,23 @@ function reload(){
 }
 
 function iniciarJogo(){   
-    if(snake[0].x > 15*box && direction == "right"){
-        snake[0].x = 0;
-    }
-    if(snake[0].x < 0 && direction == "left"){
-        snake[0].x = 16*box;
-    }
-    if(snake[0].y > 15*box && direction == "down"){
-        snake[0].y = 0;
-    }
-    if(snake[0].y < 0 && direction == "up"){
-        snake[0].y = 16*box;
+    //? Efeito Pac-man:
+    for(let i = 0; i<snake.length; i++){
+        if(snake[i].x > 15*box && direction == "right"){
+            snake[i].x = 0;
+        }
+        if(snake[i].x < 0 && direction == "left"){
+            snake[i].x = 16*box;
+        }
+        if(snake[i].y > 15*box && direction == "down"){
+            snake[i].y = 0;
+        }
+        if(snake[i].y < 0 && direction == "up"){
+            snake[i].y = 16*box;
+        }
     }
 
+    //? Game over:
     for(let i = 1; i<snake.length; i++){
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(jogo);
@@ -131,12 +139,22 @@ function iniciarJogo(){
         break;
     }
 
+    //? Cria frutinha:
     if(snakeX != food.x || snakeY != food.y){
         snake.pop();
     }
     else{
         food.x = Math.floor(Math.random() * 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
+        
+        //? Faz que a frutinha não apareça dentro da cobrinha:
+        for(let i = 1; i<snake.length; i++){
+            if(food.x == snake[i].x && food.y == snake[i].y){
+                food.x = Math.floor(Math.random() * 15 + 1) * box;
+                food.y = Math.floor(Math.random() * 15 + 1) * box;
+            }
+        }
+        indice = Math.floor(Math.random() * cores.length);
         pontos++;
     }   
 
