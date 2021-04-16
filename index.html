@@ -8,7 +8,7 @@
         <title>Snake Game</title>
     </head>
     <body>
-        <h1>SNAKE GAME</h1>
+        <h1 id="titulo">SNAKE GAME</h1>
         <main>
             <section id="instrucoes">
                 <p>INSTRUÇÕES:</p>
@@ -17,7 +17,11 @@
                 <em class="fas fa-arrow-alt-circle-down"></em>
                 <em class="fas fa-arrow-alt-circle-right"></em>
             </section>
-            <canvas id="snake" width="512" height="512" onclick="jogar=true"></canvas>
+       
+            <section id="jogo">
+                <canvas id="snake" width="512" height="512" onclick="jogar=true"></canvas>
+            </section>
+       
             <section id="pontuacao">
                 <p>PONTUAÇÃO:</p>
                 <div id="pontos">0</div>

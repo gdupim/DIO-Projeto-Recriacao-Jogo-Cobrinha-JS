@@ -1,22 +1,22 @@
 let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
-let snake = [];
-snake[0] = {
-    x: 8*box,
-    y: 8*box
-}
 let direction = "none";
-let food = {
-    x: Math.floor(Math.random() * 15 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 1) * box
-}
 let pontos = 0;
 let jogar = false, recomecar = false;
 let indice = 0;
 let cores = ["green", "blue", "yellow", "orange", "brown", "maroon", "lime", "crimson", 
              "black", "purple", "navy", "chartreuse", "forestgreen", "indigo", "lawngreen", 
              "lightseagreen", "orangered", "salmon", "springgreen", "yellowgreen"]; 
+let snake = [];
+snake[0] = {
+    x: 8*box,
+    y: 8*box
+}
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 function criarBG(){
     context.fillStyle = "lightgreen";
@@ -30,15 +30,16 @@ function criarFundo(){
 
 function criarTexto(){
     context.fillStyle = "black";
-    context.font = "25px Arial";
+    context.font = "25px Consolas";
     context.textAlign = "center";
+
     if(recomecar){
         context.fillText("GAME OVER!", 256, 210);
         context.fillText("CLIQUE AQUI PARA JOGAR DE NOVO!", 256, 280);
-        document.addEventListener("click", reload);
+        document.addEventListener('click', reload);
     }
     else{
-        context.fillText("CLIQUE AQUI PARA JOGAR!", 256, canvas.width/2);
+        context.fillText("CLIQUE AQUI PARA JOGAR!", canvas.width/2, canvas.width/2);
     }
 }
 
@@ -75,7 +76,6 @@ function update(event){
     }
 }
 
-//TODO: Fazer o elemento canvas recarregar, não a página inteira
 function reload(){
     location.reload();
 }
@@ -101,7 +101,7 @@ function iniciarJogo(){
             clearInterval(jogo);
             jogar=false;
             recomecar=true;
-            criarTexto();
+            criarTexto(recomecar);
         }
     }
 
@@ -113,7 +113,7 @@ function iniciarJogo(){
     }
     else{
         criarFundo();
-        criarTexto();
+        criarTexto(recomecar);
     }
 
     let snakeX = snake[0].x;

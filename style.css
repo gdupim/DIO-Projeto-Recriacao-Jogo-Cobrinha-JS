@@ -19,13 +19,16 @@ main{
 
 canvas{
     border-radius: 20px;
-    margin: 0% 5% 0% 10.5%;
     border: 5px solid black;
 }
 
 h1{
     font-size: 40px;
     margin: 2.5%;
+}
+
+#jogo{
+    margin: 0% 5.5% 1% 10.5%;
 }
 
 #pontuacao{
